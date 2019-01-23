@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Crypto notifier</string>
+    <string name="alert">Alert</string>
+    <string name="chose_exchange">Chose exchange:</string>
+    <string name="add_alert">Add alert</string>
+    <string name="dismiss_alert">Dismiss alert</string>
+    <string-array name="exchanges">
+        <item>Binance</item>
+        <item>Bitbbay</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="alert_list">Alert list</string>
+    <string name="addingPlus">+</string>
+    <string name="more_than">more than</string>
+    <string name="less_than">less than</string>
+    <string name="x">X</string>
+</resources>

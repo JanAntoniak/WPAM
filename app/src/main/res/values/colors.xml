@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="pallet_1">#231C07</color>
+    <color name="pallet_2">#392A16</color>
+    <color name="pallet_3">#634133</color>
+    <color name="pallet_4">#B86F52</color>
+    <color name="pallet_5">#F78764</color>
+    <color name="pallet_6">#FF7373</color>
+    <color name="pallet_7">#FF4040</color>
+</resources>
