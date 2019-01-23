@@ -76,7 +76,8 @@ class MainActivity : AppCompatActivity(), MainActivityHelperInterface {
             val client = OkHttpClient()
             val url = "wss://stream.binance.com:9443/stream?streams=${alert.coin.toLowerCase()}${alert.coinTo.toLowerCase()}@kline_1m"
             val request = Request.Builder().url(url).build()
-            val listener = WSHandler()
+            val threhold: Double = if(alert.fixedChangeThreshold != null) alert.fixedChangeThreshold else 0.0
+            val listener = WSHandler(threhold, alert.moreOrLess, lazy { self.removeEntry(alert) })
             val ws = client.newWebSocket(request, listener)
 
             val title = "Threshold hit on ${alert.exchange}!"
