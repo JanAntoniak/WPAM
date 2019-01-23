@@ -73,16 +73,17 @@ class MainActivity : AppCompatActivity(), MainActivityHelperInterface {
         override fun doInBackground(vararg params: Alert?): Void? {
             mContext = self
             val alert: Alert = params[0]!!
+
+            val title = "Threshold hit on ${alert.exchange}!"
+            val body = "${alert.coin} ${alert.moreOrLess} ${alert.fixedChangeThreshold} ${alert.coinTo}."
+
             val client = OkHttpClient()
             val url = "wss://stream.binance.com:9443/stream?streams=${alert.coin.toLowerCase()}${alert.coinTo.toLowerCase()}@kline_1m"
             val request = Request.Builder().url(url).build()
             val threhold: Double = if(alert.fixedChangeThreshold != null) alert.fixedChangeThreshold else 0.0
-            val listener = WSHandler(threhold, alert.moreOrLess, lazy { self.removeEntry(alert) })
+            val listener = WSHandler(threhold, alert.moreOrLess, lazy { self.removeEntry(alert) }, lazy {createNotification( title, body, self)} )
             val ws = client.newWebSocket(request, listener)
 
-            val title = "Threshold hit on ${alert.exchange}!"
-            val body = "${alert.coin} ${alert.moreOrLess} ${alert.fixedChangeThreshold} ${alert.coinTo}."
-            createNotification( title, body, self)
             return null
         }
 

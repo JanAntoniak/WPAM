@@ -9,7 +9,7 @@ import okhttp3.WebSocketListener
 data class K(val l: Double)
 data class Data(val k: K)
 data class Bin(val data: Data)
-class WSHandler(val threshold: Double, val direction: Direction, val removeAlert: Lazy<Unit>) : WebSocketListener() {
+class WSHandler(val threshold: Double, val direction: Direction, val removeAlert: Lazy<Unit>, val notify: Lazy<Void?>) : WebSocketListener() {
 
     override fun onMessage(webSocket: WebSocket, text: String) {
         super.onMessage(webSocket, text)
@@ -18,11 +18,15 @@ class WSHandler(val threshold: Double, val direction: Direction, val removeAlert
         val result = gson.fromJson(text, Bin::class.java)
         when (direction) {
             Direction.LESS ->
-                if (result.data.k.l < threshold)
+                if (result.data.k.l < threshold) {
+                    notify.value
                     removeAlert.value
+                }
             Direction.MORE ->
-                if (result.data.k.l > threshold)
+                if (result.data.k.l > threshold) {
+                    notify.value
                     removeAlert.value
+                }
 
         }
     }
